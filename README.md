@@ -9,7 +9,7 @@ PASOS PARA LEVANTAR EL PROYECTO
 
 2. Instalar las dependencias
 
-   nmp install
+   npm install
 
 3. levantar el proyecto
 
