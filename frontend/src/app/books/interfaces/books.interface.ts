@@ -1,11 +1,11 @@
 export interface Book {
-  id: string;
-  title: string;
-  author: string; 
+  id: number;
+  nombre: string;
+  autor: string; 
+  descripcion: string;
   publicationDate: Date; 
   generoLiterario: Genero; 
-  pages: number; 
-  language: Idioma ;
+  idioma: Idioma ;
 }
 
 export interface Idioma {
@@ -15,6 +15,16 @@ export interface Idioma {
 
 
 export interface Genero {
-  id: string;
+  id: number;
   name: string;
+}
+
+export interface BookPrueba {
+  id: number;
+  nombre: string;
+  autor: string; 
+  descripcion: string;
+  publicationDate: Date; 
+  generoLiterario: string; 
+  idioma: string ;
 }
