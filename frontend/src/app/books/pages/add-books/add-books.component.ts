@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Book, Genero, Idioma } from '../../interfaces/books.interface';
 
 @Component({
   selector: 'app-add-books',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './add-books.component.css'
 })
 export class AddBooksComponent {
+
 
 }

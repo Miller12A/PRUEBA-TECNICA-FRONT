@@ -7,12 +7,11 @@ import { ListBooksComponent } from './pages/list-books/list-books.component';
 
 @NgModule({
   declarations: [
-    ListBooksComponent
-    
   ],
   imports: [
     CommonModule,
-    BooksRoutingModule
+    BooksRoutingModule,
+    ListBooksComponent
   ]
 })
 export class BooksModule { }
