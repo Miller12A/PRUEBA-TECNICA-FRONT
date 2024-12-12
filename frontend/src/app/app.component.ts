@@ -5,7 +5,7 @@ import { ListBooksComponent } from "./books/pages/list-books/list-books.componen
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, ListBooksComponent],
+  imports: [RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

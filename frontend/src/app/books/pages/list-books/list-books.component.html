@@ -1,1 +1,41 @@
-<p>list-books works!</p>
+<div class="flex justify-center items-center bg-gray-100 dark:bg-gray-900 p-8">
+  <div class=" max-w-6xl">
+    <h1 class="text-4xl font-extrabold text-center text-gray-900 dark:text-white mb-8">BIBLIOTECA</h1>
+    <!-- Botón "Agregar Libro" -->
+    <div class="flex justify-end mb-6">
+      <button class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus:ring-blue-300">
+        Agregar Libro
+      </button>
+    </div>
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3">Libro</th>
+            <th scope="col" class="px-6 py-3">Autor</th>
+            <th scope="col" class="px-6 py-3">Fecha de Publicación</th>
+            <th scope="col" class="px-6 py-3">Tipo</th>
+            <th scope="col" class="px-6 py-3">
+              <span class="sr-only">Edit</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (book of books; track $index) {
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+              <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                {{ book.title }}
+              </th>
+              <td class="px-6 py-4">{{ book.authors }}</td>
+              <td class="px-6 py-4">{{ book.publishedDate }}</td>
+              <td class="px-6 py-4">{{ book.type }}</td>
+              <td class="px-6 py-4 text-right">
+                <a class="font-medium text-blue-600 dark:text-blue-500 hover:underline">Edit</a>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,23 +1,27 @@
 import { NgModule } from '@angular/core';
-import { Route, RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { AddBooksComponent } from './pages/add-books/add-books.component';
 import { EditBooksComponent } from './pages/edit-books/edit-books.component';
 import { ListBooksComponent } from './pages/list-books/list-books.component';
 
-const routes: Routes = [];
-
-export const categoriesRoutes: Route[] = [
-  { path: '', redirectTo: 'list-books' },
+const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: 'list-books' },
   {
     path: 'list-books',
-    component: AddBooksComponent,
+    component: ListBooksComponent,
   },
   {
     path: 'add-books',
-    component: EditBooksComponent,
+    component: AddBooksComponent,
   },
   {
     path: 'edit-books/:id',
-    component: ListBooksComponent,
+    component: EditBooksComponent,
   },
 ];
+
+@NgModule({
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
+})
+export class BooksRoutingModule { }
