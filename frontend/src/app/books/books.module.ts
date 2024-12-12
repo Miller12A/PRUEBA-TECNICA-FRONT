@@ -1,23 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddBooksComponent } from './pages/add-books/add-books.component';
-import { EditBooksComponent } from './pages/edit-books/edit-books.component';
+
+import { BooksRoutingModule } from './books-routing.module';
 import { ListBooksComponent } from './pages/list-books/list-books.component';
 
 
-
 @NgModule({
-  declarations: [],
+  declarations: [
+    ListBooksComponent
+    
+  ],
   imports: [
     CommonModule,
-    AddBooksComponent,
-    EditBooksComponent,
-    ListBooksComponent,
-  ],
-  exports: [
-    AddBooksComponent,
-    EditBooksComponent,
-    ListBooksComponent,
+    BooksRoutingModule
   ]
 })
 export class BooksModule { }
