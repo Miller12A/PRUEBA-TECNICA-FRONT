@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { EditBooksComponent } from "../edit-books/edit-books.component";
 import { MatIconModule } from '@angular/material/icon';
 import { ModalDeleteComponent } from '../../../../layout/modal-delete/modal-delete.component';
+import { ModalInfoComponent } from "../../../../layout/modal-info/modal-info.component";
 
 
 @Component({
@@ -22,7 +23,8 @@ import { ModalDeleteComponent } from '../../../../layout/modal-delete/modal-dele
     MatPaginatorModule,
     EditBooksComponent,
     MatIconModule,
-    ModalDeleteComponent
+    ModalDeleteComponent,
+    ModalInfoComponent
 ],
 })
 export class ListBooksComponent implements AfterViewInit, OnInit {
@@ -36,6 +38,7 @@ export class ListBooksComponent implements AfterViewInit, OnInit {
     'publicationDate',
     'editar',
     'eliminar',
+    'info'
   ];
   dataSource = new MatTableDataSource<BookPrueba>(ELEMENT_DATA);
 
@@ -46,6 +49,8 @@ export class ListBooksComponent implements AfterViewInit, OnInit {
   isEditModalVisible: boolean = false;
 
   isDeleteModalVisible: boolean = false;
+
+  isInfoModalVisible: boolean = false;
 
   selectedBook!: BookPrueba;
 
@@ -88,6 +93,15 @@ export class ListBooksComponent implements AfterViewInit, OnInit {
 
   closeDeleteBookModal(): void {
     this.isDeleteModalVisible = false;
+  }
+
+  openInfoBookModal(book: BookPrueba): void {
+    this.selectedBook = book; 
+    this.isInfoModalVisible = true;
+  }
+
+  closeInfoBookModal(): void {
+    this.isInfoModalVisible = false;
   }
 }
 

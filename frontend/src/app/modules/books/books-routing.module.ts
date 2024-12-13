@@ -10,14 +10,6 @@ const routes: Routes = [
     path: 'list-books',
     component: ListBooksComponent,
   },
-  {
-    path: 'add-books',
-    component: AddBooksComponent,
-  },
-  {
-    path: 'edit-books/:id',
-    component: EditBooksComponent,
-  },
 ];
 
 @NgModule({
