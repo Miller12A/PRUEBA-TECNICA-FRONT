@@ -1,28 +1,95 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import { Component, ViewChild, AfterViewInit, OnInit } from '@angular/core';
+import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { BookPrueba } from '../../interfaces/books.interface';
+import { AlertService } from '../../../../layout/alerts/alerts.service';
+import { AddBooksComponent } from "../add-books/add-books.component";
+import { CommonModule } from '@angular/common';
+import { EditBooksComponent } from "../edit-books/edit-books.component";
+import { MatIconModule } from '@angular/material/icon';
+import { ModalDeleteComponent } from '../../../../layout/modal-delete/modal-delete.component';
+
 
 @Component({
   selector: 'app-list-books',
   templateUrl: './list-books.component.html',
   styleUrls: ['./list-books.component.css'],
   standalone: true,
-  imports: [MatTableModule, MatPaginatorModule],
-
+  imports: [
+    AddBooksComponent,
+    CommonModule,
+    MatTableModule,
+    MatPaginatorModule,
+    EditBooksComponent,
+    MatIconModule,
+    ModalDeleteComponent
+],
 })
-export class  ListBooksComponent implements AfterViewInit  {
-
-  displayedColumns: string[] = ['id', 'nombre', 'autor', 'descripcion', 'idioma', 'generoLiterario', 'publicationDate'];
+export class ListBooksComponent implements AfterViewInit, OnInit {
+  displayedColumns: string[] = [
+    'id',
+    'nombre',
+    'autor',
+    'descripcion',
+    'idioma',
+    'generoLiterario',
+    'publicationDate',
+    'editar',
+    'eliminar',
+  ];
   dataSource = new MatTableDataSource<BookPrueba>(ELEMENT_DATA);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
+  isModalVisible: boolean = false;
+
+  isEditModalVisible: boolean = false;
+
+  isDeleteModalVisible: boolean = false;
+
+  selectedBook!: BookPrueba;
+
+  constructor(private alertService: AlertService) {}
+
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
-}
 
+  ngOnInit(): void {}
+
+  triggerAlert(id: string): void {
+    console.log(`Button clicked with ID: ${id}`);
+    this.alertService.showAlert(id);
+  }
+
+  openAddBookModal(): void {
+    this.isModalVisible = true;
+  }
+
+  closeAddBookModal(): void {
+    this.isModalVisible = false;
+  }
+
+
+  openEditBookModal(book: BookPrueba): void {
+    this.selectedBook = book;
+    this.isEditModalVisible = true;
+  }
+  
+  closeEditBookModal(): void {
+    this.isEditModalVisible = false;
+  }
+
+  openDeleteBookModal(book: BookPrueba): void {
+    console.log('Book to delete:', book);
+    this.selectedBook = book; 
+    this.isDeleteModalVisible = true;
+  }
+
+  closeDeleteBookModal(): void {
+    this.isDeleteModalVisible = false;
+  }
+}
 
 const ELEMENT_DATA: BookPrueba[] = [
   {id: 1, nombre: 'Hydrogen', autor: 'Miller Mora', generoLiterario: 'Comedia', idioma: 'francés', publicationDate: new Date(), descripcion: 'Lorem Insup'},
