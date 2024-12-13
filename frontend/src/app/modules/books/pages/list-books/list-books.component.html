@@ -1,0 +1,87 @@
+<div class="flex justify-center dark:bg-blue-200 p-8">
+    <div>
+        <h1 class="text-6xl font-extrabold text-center text-gray-900 dark:text-white mb-8">
+            BIBLIOTECA
+        </h1>
+
+        <div class="flex justify-end mb-6">
+            <button
+                class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-blue-500 dark:hover:bg-blue-400 dark:focus:ring-blue-300"
+                (click)="openAddBookModal()">
+                Agregar Libro
+            </button>
+        </div>
+
+        <!-- Tabla -->
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" class="mat-table">
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{ element.id }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="nombre">
+        <th mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td mat-cell *matCellDef="let element"> {{ element.nombre }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="autor">
+        <th mat-header-cell *matHeaderCellDef> Autor </th>
+        <td mat-cell *matCellDef="let element"> {{ element.autor }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="generoLiterario">
+        <th mat-header-cell *matHeaderCellDef> Género Literario </th>
+        <td mat-cell *matCellDef="let element"> {{ element.generoLiterario }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="idioma">
+        <th mat-header-cell *matHeaderCellDef> Idioma </th>
+        <td mat-cell *matCellDef="let element"> {{ element.idioma }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="publicationDate">
+        <th mat-header-cell *matHeaderCellDef> Fecha de Publicación </th>
+        <td mat-cell *matCellDef="let element"> {{ element.publicationDate | date }} </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="descripcion">
+        <th mat-header-cell *matHeaderCellDef> Descripción </th>
+        <td mat-cell *matCellDef="let element"> {{ element.descripcion }} </td>
+      </ng-container>
+  
+      <!-- Columna de acciones -->
+      <ng-container matColumnDef="editar">
+        <th mat-header-cell *matHeaderCellDef> Editar </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button (click)="openEditBookModal(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="eliminar">
+        <th mat-header-cell *matHeaderCellDef> Eliminar </th>
+        <td mat-cell *matCellDef="let element">
+            <button mat-icon-button color="warn" (click)="openDeleteBookModal(element)">
+                <mat-icon>delete</mat-icon>
+            </button>
+        </td>
+    </ng-container>
+
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  
+    <mat-paginator [pageSizeOptions]="[15, 19, 24]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+  </div>
+  
+
+    </div>
+
+    <!-- Modal -->
+    <app-add-books *ngIf="isModalVisible" (closeModal)="closeAddBookModal()"></app-add-books>
+    <app-edit-books *ngIf="isEditModalVisible" (closeModal)="closeEditBookModal()"></app-edit-books>
+    <app-modal-delete *ngIf="isDeleteModalVisible" (closeModal)="closeDeleteBookModal()"></app-modal-delete>
+</div>

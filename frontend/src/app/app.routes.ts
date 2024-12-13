@@ -6,7 +6,7 @@ export const routes: Routes = [
     children: [
       {
         path: 'books',
-        loadChildren: () => import('./books/books-routing.module').then(m => m.BooksRoutingModule)
+        loadChildren: () => import('./modules/books/books-routing.module').then(m => m.BooksRoutingModule)
       },
       {
         path: '',
